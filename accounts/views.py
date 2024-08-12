@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 import requests
 from .models import BMIRecord, SavedExercise, UserProfile
 from django.contrib import messages
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Create your views here.
@@ -88,7 +92,7 @@ def calculate_bmi(request):
             querystring = {"bmi": str(bmi)}
 
             headers = {
-                "x-rapidapi-key": "81c42ca1aamshbc86aff90db1525p15edc7jsn76b8691dbdaa",
+                "x-rapidapi-key": os.getenv('x-rapidapi-key'),
                 "x-rapidapi-host": "body-mass-index-bmi-calculator.p.rapidapi.com"
             }
 
@@ -110,8 +114,8 @@ def calculate_bmi(request):
 
 
 def fetch_image_from_google(exercise_name):
-    api_key = "AIzaSyAUTscYGv8XMMy1KarrbQv5oHfQfuCgF_I"
-    cse_id = "d05de4b2b58e7497f"
+    api_key = os.getenv('YOUR_GOOGLE_CUSTOM_SEARCH_API_KEY')
+    cse_id = os.getenv('YOUR_CUSTOM_SEARCH_ENGINE_ID')
 
     url = f"https://www.googleapis.com/customsearch/v1?q={
         exercise_name}&searchType=image&key={api_key}&cx={cse_id}&num=1"
@@ -147,7 +151,7 @@ def get_exercises(request):
                     querystring["muscle"] = muscle_group
 
                 headers = {
-                    "x-rapidapi-key": "81c42ca1aamshbc86aff90db1525p15edc7jsn76b8691dbdaa",
+                    "x-rapidapi-key": os.getenv('x-rapidapi-key'),
                     "x-rapidapi-host": "exercises-by-api-ninjas.p.rapidapi.com"
                 }
 
