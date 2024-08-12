@@ -1,0 +1,86 @@
+.exercise, .bmi, .home {
+  max-width: 80rem;
+  margin: 0.5rem auto;
+  border-radius: 6px;
+  background-color: #FCE09B;
+  border: 4px solid #186F65;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.25);
+  position: relative;
+  padding: 1rem;
+  text-align: center;
+}
+
+.bmi, .home {
+  max-width: 60rem;
+}
+
+.profile {
+  max-width: 45rem;
+}
+
+body {
+  background-color: #b5cb99;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+  font-family: "Open Sans";
+}
+
+h1, h2, h3, h4 {
+  font-family: "Josefin Sans";
+}
+
+header {
+  background-color: #186F65;
+  padding: 2rem;
+}
+
+footer {
+  background-color: #B2533E;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+
+h4 {
+  margin-top: 2rem;
+}
+
+li span {
+  font-weight: bold;
+}
+
+.logo {
+  height: 6rem;
+}
+
+.logo-header {
+  height: 3rem;
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #FCE09B;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+  }
+
+  .Obese {
+    color: red;
+  }
+
+  .Overweight {
+    color: orange;
+  }
+
+  .Normal {
+    color: green;
+  }
+
+  .Under {
+    color: aqua;
+  }

@@ -1,0 +1,62 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+    <div class="container-xl py-2">
+        {% if user.is_authenticated %}
+    
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-lg-10 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="{{ user_profile.avatar.url }}"
+                  alt="Avatar" class="img-fluid my-5 rounded-circle" style="width: 80px;" />
+                <h3>{{ user.username }}</h3>
+                <h4>Email:</h4>
+                <p>{{ user.email }}</p>
+                <i class="far fa-edit mb-5"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Your BMI Records</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    {% if bmi_records %}
+                    <ul class="list-group">
+                    {% for record in bmi_records %}
+                        <li class="list-group-item">{{ record.date_recorded }}: BMI - {{ record.bmi }} | Weight Category - <span class="{{ record.weight_category }}">{{ record.weight_category }}</span></li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p>You have no BMI records.</p>
+                    {% endif %}
+                  </div>
+                  <h6 class="pt-3">Workout Records</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    {% if saved_exercises %}
+                    <ul class="list-group">
+                    {% for exercise in saved_exercises %}
+                    <li class="list-group-item">{{ exercise.date_executed }}: <span>{{ exercise.name }}</span> - {{ exercise.exercise_type }} - {{ exercise.muscle_group }} - Difficulty: {{ exercise.difficulty_level }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>You have no Workout records.</p>
+                    {% endif %}
+                  </div>
+                    {% else %}
+                        <p>You need to <a href="{% url 'login' %}">log in</a> to view your profile.</p>
+                    {% endif %}  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

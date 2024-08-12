@@ -1,0 +1,17 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="py-1 home">
+  <h4>Welcome, {{ user.username }}!</h4>
+  <p>You have successfully logged in.</p>
+</div>
+
+<div class="container">
+  <img class="w-100 img-fluid mb-5" src="{% static "accounts/images/home-page.png" %}" alt="login form" />
+<div>
+{% endblock %}

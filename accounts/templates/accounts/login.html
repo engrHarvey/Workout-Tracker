@@ -1,0 +1,55 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="{% static "accounts/images/login.jpg" %}"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <img class="logo" src="{% static "accounts/images/logo.PNG" %}" alt="logo"/>
+                  <span class="h1 fw-bold mb-0">Workout Tracker</span>
+                </div>
+                <h4>Sign into your account</h4>
+
+                <form method="post" action="{% url 'login' %}">
+                  {% csrf_token %}
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                      <label for="id_username" class="form-label">Username:</label>
+                      <input type="text" class="form-control" name="username" id="id_username" required>
+                  </div>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                      <label for="id_password" class="form-label">Password:</label>
+                      <input type="password" class="form-control" name="password" id="id_password" required>
+                  </div>
+                  
+                  <div class="mb-3">
+                      <button type="submit" class="btn btn-primary">Login</button>
+                      <a href="{% url "register" %}" class="btn btn-secondary">Register</a>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+{% endblock %}

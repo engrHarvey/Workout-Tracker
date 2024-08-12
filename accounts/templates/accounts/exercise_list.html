@@ -1,0 +1,78 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block title %}
+Exercise Finder
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            showMessage("{{ message|safe }}");
+        </script>
+    {% endfor %}
+{% endif %}
+
+<div class="container-md exercise">
+
+    <!-- Section: Design Block -->
+<section class="text-center py-5">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('{% static "accounts/images/exercise.jpg" %}');
+          height: 350px;
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+          margin-top: -100px;
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Find Exercises</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+
+                    <button type="submit" name="search" class="btn btn-primary">Search</button>
+                </form>
+
+                {% if exercises %}
+
+                    <h2>Exercises</h2>
+                    <ul class="list-group">
+                        {% for exercise in exercises %}
+                                <h4>{{ exercise.name }}</h4>
+                                <li class="list-group-item">{{ exercise.type }} - {{ exercise.muscle }} - Difficulty: {{ exercise.difficulty }}</li>
+                                <li class="list-group-item">Image reference(from google images).</li>
+                                <li class="list-group-item"><img class="img-fluid" src="{{ exercise.image_url }}" alt="{{ exercise.name }} image"/></li>
+                                <li class="list-group-item"><span>Instructions:</span> {{ exercise.instructions|safe }}</li>
+                                <form method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="exercise_name" value="{{ exercise.name }}">
+                                    <input type="hidden" name="exercise_type" value="{{ exercise.type }}">
+                                    <input type="hidden" name="muscle_group" value="{{ exercise.muscle }}">
+                                    <input type="hidden" name="difficulty_level" value="{{ exercise.difficulty }}">
+                                    <button type="submit" name="save" class="btn btn-success mt-2">Add for today's Workout Record</button>
+                                </form>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                <p>"Change the muscle group or difficulty level if there are no exercises after clicking search. Not all exercise types have a specific muscle group."</p>
+                {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+  
+</div>
+{% endblock %}
